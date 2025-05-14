@@ -11,4 +11,5 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./src:/app
+      - ./src/point_selling_service:/app/point_selling_service
+      - ./src/tests:/app/tests
