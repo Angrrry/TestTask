@@ -1,0 +1,14 @@
+version: "3.4"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: develop
+    env_file:
+      - ./etc/app/.dev.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - /src:/app
