@@ -16,7 +16,6 @@ def init_container(settings):
 
 
 def create_fastapi(container: Container):
-    print(container.config.documentation_enabled())
     fastapi_app = FastAPI(
         title=PROJECT_NAME,
         docs_url=DOCUMENTATION_URL
@@ -24,7 +23,7 @@ def create_fastapi(container: Container):
         else None,
     )
     ...
-
+    fastapi_app.container = container
     return fastapi_app
 
 

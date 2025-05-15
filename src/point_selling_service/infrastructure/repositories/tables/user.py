@@ -13,3 +13,4 @@ class UserTable(BaseTable):
 
     id: Mapped[str] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(nullable=False)
+    password_hash: Mapped[str] = mapped_column(nullable=False)

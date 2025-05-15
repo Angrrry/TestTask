@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: develop
+    env_file:
+      - ./etc/app/.test.env
+    command: ["python", "-m", "pytest", "tests"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/point_selling_service:/app/point_selling_service
+      - ./src/tests:/app/tests

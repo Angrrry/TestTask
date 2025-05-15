@@ -4,9 +4,7 @@ from enum import Enum
 from uuid import uuid4
 from pydantic import BaseModel, model_validator, Field
 
-__all__ = ["Transaction", "SYSTEM_IDENTITY_ID"]
-
-SYSTEM_IDENTITY_ID = "SYSTEM"
+__all__ = ["Transaction", ]
 
 
 class TransactionType(Enum):
@@ -19,9 +17,8 @@ class TransactionType(Enum):
 class Transaction(BaseModel):
     # I'm not a fan of pydantic in domain models, using it here in sake of data validation
     id_: str = Field(default_factory=lambda: uuid4().hex)
-    from_: str
-    to: str = Field(SYSTEM_IDENTITY_ID)
-    transaction_type: TransactionType
+    owner: str
+    type_: TransactionType
     points_delta: float = Field(0.0)
     money_delta: float = Field(0.0)
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
